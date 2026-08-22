@@ -13,3 +13,4 @@ langchain_huggingface
 sentence-transformers
 langchain-groq
 langgraph-checkpoint-sqlite
+langchain-tavily
