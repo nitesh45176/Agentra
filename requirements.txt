@@ -16,4 +16,5 @@ langgraph-checkpoint-sqlite
 langchain-tavily
 torch
 torchvision
+tavily-python
 transformers
