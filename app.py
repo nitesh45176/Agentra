@@ -354,17 +354,44 @@ add_thread(st.session_state["thread_id"])
 # Main Title
 # ============================================================
 
-st.title("Agentic Chatbot")
+st.title("Agentra")
 
-# Give the compact icon-only delete buttons in the sidebar a lighter,
-# more "icon button" look (transparent, no border, red on hover)
-# instead of the default boxed secondary-button style. Streamlit
-# exposes a "st-key-<key>" class on an element's wrapper when it has
-# a `key=`, so we can target just the delete buttons (key="delete_*")
-# without touching any other button in the app.
+# Sidebar styling: a real logo heading (not a button) for the brand
+# name, and a lighter "icon button" look for the small "+" new-chat
+# icon and the per-chat delete buttons — transparent by default, with
+# a colored hover. Streamlit exposes a "st-key-<key>" class on an
+# element's wrapper when it has a `key=`, so each rule below only
+# touches the button it's meant to.
 st.markdown(
     """
     <style>
+    .agentra-logo {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        margin: 0;
+        line-height: 1.2;
+        background: linear-gradient(90deg, #7C6CF2, #35C9E1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .agentra-tagline {
+        color: #9aa0a6;
+        font-size: 0.78rem;
+        margin: 2px 0 0 0;
+    }
+    [class*="st-key-new_chat_icon"] button {
+        background: transparent !important;
+        border: 1px solid transparent !important;
+        color: #9aa0a6 !important;
+        box-shadow: none !important;
+        font-size: 1.1rem !important;
+    }
+    [class*="st-key-new_chat_icon"] button:hover {
+        color: #35C9E1 !important;
+        background: rgba(53, 201, 225, 0.12) !important;
+        border-color: rgba(53, 201, 225, 0.4) !important;
+    }
     [class*="st-key-delete_"] button {
         background: transparent !important;
         border: 1px solid transparent !important;
@@ -386,9 +413,23 @@ st.markdown(
 # Sidebar - Branding / New Chat
 # ============================================================
 
-st.sidebar.title("Agentra.")
+logo_col, new_chat_col = st.sidebar.columns([5, 1])
 
-st.sidebar.caption("Your AI research & trading assistant")
+with logo_col:
+
+    st.markdown(
+        '<p class="agentra-logo">🧭 Agentra</p>'
+        '<p class="agentra-tagline">Your AI research &amp; trading assistant</p>',
+        unsafe_allow_html=True,
+    )
+
+with new_chat_col:
+
+    if st.button("➕", key="new_chat_icon", help="Start a new chat"):
+
+        reset_chat()
+
+        st.rerun()
 
 
 # ============================================================
