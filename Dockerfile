@@ -18,6 +18,4 @@ RUN python -m pip install --upgrade pip && \
 
 COPY . .
 
-EXPOSE 8501
-
-CMD ["sh", "-c", "streamlit run app.py --server.address=0.0.0.0 --server.port=$PORT --server.headless=true --server.enableCORS=false --server.enableWebsocketCompression=false --browser.gatherUsageStats=false"]
+CMD ["sh", "-c", "streamlit run app.py --server.address=0.0.0.0 --server.port=$PORT --server.headless=true --server.enableCORS=false --server.enableXsrfProtection=false --server.enableWebsocketCompression=false --browser.gatherUsageStats=false"]
