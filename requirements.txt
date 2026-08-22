@@ -14,3 +14,6 @@ sentence-transformers
 langchain-groq
 langgraph-checkpoint-sqlite
 langchain-tavily
+torch
+torchvision
+transformers
